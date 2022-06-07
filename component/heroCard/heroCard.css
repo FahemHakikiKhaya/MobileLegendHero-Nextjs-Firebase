@@ -66,6 +66,9 @@
   font-size: 4em;
   z-index: 1;
 }
+.card:hover {
+  cursor: pointer;
+}
 
 .card a {
   position: absolute;

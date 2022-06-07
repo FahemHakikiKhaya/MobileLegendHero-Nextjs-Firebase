@@ -3,21 +3,25 @@ import Grid from "@mui/material/Grid";
 
 import { useEffect, useState } from "react";
 import { app, database } from "../config/firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, doc, getDocs } from "firebase/firestore";
 import HeroCard from "../component/heroCard";
 
 export default function Home() {
   const [heroData, setHeroData] = useState([]);
   const heroColRef = collection(database, "Hero");
 
+  const heroDocRef = doc(database, "Hero", "rIyQQIsmuzPUUDoeJcKT");
+
   const getData = async () => {
     onSnapshot(heroColRef, (data) => {
       const heroList = data.docs.map((hero) => {
-        return hero.data();
+        const heroId = hero.id;
+        return { ...hero.data(), id: heroId };
       });
       setHeroData(heroList);
     });
   };
+
   useEffect(() => {
     getData();
   }, []);
