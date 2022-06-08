@@ -11,7 +11,7 @@ export default function HeroCard({ data }) {
           alt="sq-sample17"
         />
         <figcaption>
-          <i class="ion-android-open"></i>
+          <h1>{data.name}</h1>
         </figcaption>
       </figure>
     </Link>
