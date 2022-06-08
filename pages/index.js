@@ -3,7 +3,16 @@ import Grid from "@mui/material/Grid";
 
 import { useEffect, useState } from "react";
 import { app, database } from "../config/firebase";
-import { collection, onSnapshot, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  doc,
+  getDocs,
+  getDoc,
+  query,
+  where,
+  getDocsFromServer,
+} from "firebase/firestore";
 import HeroCard from "../component/heroCard";
 
 export default function Home() {
@@ -20,6 +29,15 @@ export default function Home() {
       });
       setHeroData(heroList);
     });
+    const entries = await getDocs(collection(database, "Hero"));
+    const paths = entries.docs.map((entry) => {
+      return {
+        params: {
+          id: entry.id.toString(),
+        },
+      };
+    });
+    console.log(paths);
   };
 
   useEffect(() => {
