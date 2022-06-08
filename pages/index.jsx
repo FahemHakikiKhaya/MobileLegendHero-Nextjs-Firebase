@@ -30,7 +30,7 @@ export default function Home({ heros }) {
   const mapHeroList = () => {
     return heros.map((data, index) => {
       return (
-        <Grid item xs={2} sm={4} md={4} key={index}>
+        <Grid xs={2} sm={4} md={4} key={index}>
           <HeroCard data={data} />
         </Grid>
       );
@@ -38,7 +38,14 @@ export default function Home({ heros }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "80vw",
+        marginLeft: "180px",
+      }}
+    >
       <Box sx={{ display: "flex", marginTop: "50px" }}>
         <FormControl variant="standard" sx={{ width: "80%" }}>
           <OutlinedInput
@@ -60,11 +67,7 @@ export default function Home({ heros }) {
         </FormControl>
       </Box>
       <Box sx={{ flexGrow: 1 }}>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
+        <Grid container columns={{ md: 16 }}>
           {mapHeroList()}
         </Grid>
       </Box>
