@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
+import { Box } from "@mui/material";
 
 export const getStaticPaths = async () => {
   const entries = await getDocs(collection(database, "Hero"));
@@ -55,16 +56,49 @@ export const getStaticProps = async (context) => {
 };
 
 function DetailPage({ heroDetail }) {
+  const { roles, name, image, lanes, price } = heroDetail;
   return (
-    <div>
-      <h1>Hero Name : {heroDetail.name}</h1>
-      {heroDetail.roles.map((role) => {
-        return <h4>{role}</h4>;
-      })}
-      {heroDetail.lanes.map((lane) => {
-        return <h4>{lane}</h4>;
-      })}
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Box>
+        <img style={{ borderRadius: "50%", width: "600px" }} src={image} />
+      </Box>
+      <Box style={{ textAlign: "center" }}>
+        <h1>Hero Name : {name}</h1>
+        <Box sx={{ display: "flex", marginLeft: "70px" }}>
+          <h2>Price : </h2>
+          <img
+            style={{ width: "50px" }}
+            src="https://cdn0.iconfinder.com/data/icons/business-management-line-2/24/cash-512.png"
+          />
+          <h2>{price}</h2>
+        </Box>
+
+        <h2>
+          Roles :
+          {roles.map((role, index) => {
+            if (index == roles.length - 1) {
+              return <span>{role}</span>;
+            }
+            return <span> {role} , </span>;
+          })}
+        </h2>
+        <h2>
+          Lanes :
+          {lanes.map((lane, index) => {
+            if (index == lanes.length - 1) {
+              return <span>{lane}</span>;
+            }
+            return <span> {lane} , </span>;
+          })}
+        </h2>
+      </Box>
+    </Box>
   );
 }
 
