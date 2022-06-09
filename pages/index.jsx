@@ -7,12 +7,14 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Button,
 } from "@mui/material/";
-
+import { useState } from "react";
 import { app, database } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import HeroCard from "../component/heroCard";
 import SearchIcon from "@mui/icons-material/Search";
+import AddModal from "../component/addModal";
 
 export const getStaticProps = async () => {
   const heroColRef = collection(database, "Hero");
@@ -27,6 +29,7 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ heros }) {
+  const [showAddModal, setShowAddModal] = useState(false);
   const mapHeroList = () => {
     return heros.map((data, index) => {
       return (
@@ -57,7 +60,8 @@ export default function Home({ heros }) {
             }
           />
         </FormControl>
-        <FormControl sx={{ width: "20%" }}>
+
+        <FormControl sx={{ width: "10%" }}>
           <InputLabel>Sort</InputLabel>
           <Select id="demo-simple-select">
             <MenuItem value={10}>Ten</MenuItem>
@@ -65,6 +69,19 @@ export default function Home({ heros }) {
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
+        <Button
+          variant="outlined"
+          onClick={() => setShowAddModal(true)}
+          sx={{ width: "10%", color: "black", borderColor: "black" }}
+        >
+          Add
+        </Button>
+        <AddModal
+          show={showAddModal}
+          onClose={() => {
+            setShowAddModal(false);
+          }}
+        />
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container columns={{ md: 16 }}>
