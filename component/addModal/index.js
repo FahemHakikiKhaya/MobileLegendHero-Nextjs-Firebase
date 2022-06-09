@@ -16,6 +16,21 @@ import { array, number, object, string } from "yup";
 
 export default function AddModal({ show, onClose }) {
   const [previewImage, setPreviewImage] = useState("");
+
+  const menuItemDisabled = (item, values) => {
+    var isDisabled = false;
+    if (values.length == 2) {
+      for (var i = 0; i < values.length; i++) {
+        const value = values[i];
+        if (value == item) {
+          isDisabled = false;
+          break;
+        }
+        isDisabled = true;
+      }
+    }
+    return isDisabled;
+  };
   return (
     <Modal
       open={show}
@@ -31,9 +46,9 @@ export default function AddModal({ show, onClose }) {
       >
         <Box
           sx={{
-            marginTop: "70px",
+            marginTop: "40px",
             width: "500px",
-            height: "700px",
+            height: "750px",
             backgroundColor: "white",
             padding: "50px",
           }}
@@ -59,12 +74,12 @@ export default function AddModal({ show, onClose }) {
                 .required("Please Input The Price")
                 .min(10000, "Must Be More Than 10000")
                 .max(32000, "Cannot Be More Than 32000"),
-              roles: array().required("A Hero Must Have A Role").max(2),
-              lanes: array().required("A Hero MUst Have A Lane").max(2),
+              roles: array().min(1),
+              lanes: array().min(1),
               image: string().required("Please Input The Hero Image"),
             })}
           >
-            {({ setFieldValue, errors, isValid, touched }) => (
+            {({ setFieldValue, errors, isValid, touched, values }) => (
               <Form>
                 <Field
                   fullWidth
@@ -101,14 +116,76 @@ export default function AddModal({ show, onClose }) {
                     // error={Boolean(errors.roles) && Boolean(touched.roles)}
                     // helperText={Boolean(touched.roles) && errors.roles}
                   >
-                    <MenuItem value="IQd2iirX2w83sVl7HRNR">Marksman</MenuItem>
-                    <MenuItem value="2HC38QmJgUPwH7KZFp10">Tank</MenuItem>
-                    <MenuItem value="ji2XFhDhKlcFFe5fwxS9">Mage</MenuItem>
-                    <MenuItem value="atI6ahQC7luRIEWETTRl">Assasin</MenuItem>
-                    <MenuItem value="tin4OS042UjXOkHwPLzm">Support</MenuItem>
-                    <MenuItem value="91Su0EimjsaIrEh5TE1o">Figther</MenuItem>
+                    <MenuItem
+                      value="IQd2iirX2w83sVl7HRNR"
+                      disabled={menuItemDisabled(
+                        "IQd2iirX2w83sVl7HRNR",
+                        values.roles,
+                        errors.roles
+                      )}
+                    >
+                      Marksman
+                    </MenuItem>
+                    <MenuItem
+                      value="2HC38QmJgUPwH7KZFp10"
+                      disabled={menuItemDisabled(
+                        "2HC38QmJgUPwH7KZFp10",
+                        values.roles,
+                        errors.roles
+                      )}
+                    >
+                      Tank
+                    </MenuItem>
+                    <MenuItem
+                      value="ji2XFhDhKlcFFe5fwxS9"
+                      disabled={
+                        menuItemDisabled(
+                          "ji2XFhDhKlcFFe5fwxS9",
+                          values.roles,
+                          errors.roles
+                        ) && true
+                      }
+                    >
+                      Mage
+                    </MenuItem>
+                    <MenuItem
+                      value="atI6ahQC7luRIEWETTRl"
+                      disabled={
+                        menuItemDisabled(
+                          "atI6ahQC7luRIEWETTRl",
+                          values.roles,
+                          errors.roles
+                        ) && true
+                      }
+                    >
+                      Assasin
+                    </MenuItem>
+                    <MenuItem
+                      value="tin4OS042UjXOkHwPLzm"
+                      disabled={
+                        menuItemDisabled(
+                          "tin4OS042UjXOkHwPLzm",
+                          values.roles,
+                          errors.roles
+                        ) && true
+                      }
+                    >
+                      Support
+                    </MenuItem>
+                    <MenuItem
+                      value="91Su0EimjsaIrEh5TE1o"
+                      disabled={
+                        menuItemDisabled(
+                          "91Su0EimjsaIrEh5TE1o",
+                          values.roles,
+                          errors.roles
+                        ) && true
+                      }
+                    >
+                      Figther
+                    </MenuItem>
                   </Field>
-                  <FormHelperText>
+                  <FormHelperText style={{ color: "red" }}>
                     {Boolean(touched.roles) && errors.roles}
                   </FormHelperText>
                 </FormControl>
@@ -123,14 +200,68 @@ export default function AddModal({ show, onClose }) {
                     multiple="true"
                     style={{ marginBlock: "10px" }}
                   >
-                    <MenuItem value="BR1ijHHX09pn6FCBIyFh">Mid Lane</MenuItem>
-                    <MenuItem value="GbeFgoDShkRLdyXeivSX">Gold Lane</MenuItem>
-                    <MenuItem value="P2cvz5uyMsKO00ua9FOG">Roam</MenuItem>
-                    <MenuItem value="PMfgz045PaLJUuJSwF2l">Jungle</MenuItem>
-                    <MenuItem value="x0DxKwqS7JFE6zx09Fk0">Exp Lane</MenuItem>
+                    <MenuItem
+                      value="BR1ijHHX09pn6FCBIyFh"
+                      disabled={
+                        menuItemDisabled(
+                          "BR1ijHHX09pn6FCBIyFh",
+                          values.lanes
+                        ) && true
+                      }
+                    >
+                      Mid Lane
+                    </MenuItem>
+                    <MenuItem
+                      value="GbeFgoDShkRLdyXeivSX"
+                      disabled={
+                        menuItemDisabled(
+                          "GbeFgoDShkRLdyXeivSX",
+                          values.lanes
+                        ) && true
+                      }
+                    >
+                      Gold Lane
+                    </MenuItem>
+                    <MenuItem
+                      value="P2cvz5uyMsKO00ua9FOG"
+                      disabled={
+                        menuItemDisabled(
+                          "P2cvz5uyMsKO00ua9FOG",
+                          values.lanes
+                        ) && true
+                      }
+                    >
+                      Roam
+                    </MenuItem>
+                    <MenuItem
+                      value="PMfgz045PaLJUuJSwF2l"
+                      disabled={
+                        menuItemDisabled(
+                          "PMfgz045PaLJUuJSwF2l",
+                          values.lanes
+                        ) && true
+                      }
+                    >
+                      Jungle
+                    </MenuItem>
+                    <MenuItem
+                      value="x0DxKwqS7JFE6zx09Fk0"
+                      disabled={
+                        menuItemDisabled(
+                          "x0DxKwqS7JFE6zx09Fk0",
+                          values.lanes
+                        ) && true
+                      }
+                    >
+                      Exp Lane
+                    </MenuItem>
                   </Field>
+                  <FormHelperText style={{ color: "red" }}>
+                    {Boolean(touched.lanes) && errors.lanes}
+                  </FormHelperText>
                 </FormControl>
                 <Box>
+                  <label>Input Image *</label>
                   <Box
                     sx={{
                       border: "0.1px solid black",
@@ -153,6 +284,9 @@ export default function AddModal({ show, onClose }) {
                       );
                     }}
                   />
+                  <FormHelperText style={{ color: "red", marginLeft: "15px" }}>
+                    {Boolean(touched.roles) && errors.image}
+                  </FormHelperText>
                 </Box>
 
                 <Box sx={{ marginTop: "20px", display: "flex" }}>
@@ -162,6 +296,7 @@ export default function AddModal({ show, onClose }) {
                     variant="contained"
                     color="success"
                     sx={{ backgroundColor: "green" }}
+                    disabled={!isValid}
                   >
                     Add Hero
                   </Button>
