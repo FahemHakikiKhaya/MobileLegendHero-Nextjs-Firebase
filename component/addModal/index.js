@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import reactDom from "react-dom";
 import {
   Box,
   TextField,
@@ -11,9 +10,9 @@ import {
   FormControl,
   FormHelperText,
 } from "@mui/material";
-import { useFormik, Form, Field, Formik, FieldArray } from "formik";
+import { Form, Field, Formik } from "formik";
 import { array, number, object, string } from "yup";
-
+import { UploadData } from "./uploadData";
 export default function AddModal({ show, onClose }) {
   const [previewImage, setPreviewImage] = useState("");
 
@@ -57,14 +56,18 @@ export default function AddModal({ show, onClose }) {
             initialValues={{
               name: "",
               price: "",
-
               roles: [],
               lanes: [],
               image: "",
             }}
-            onSubmit={(values, formikHelpers) => {
-              console.log(values);
+            onSubmit={async (values, formikHelpers) => {
+              const res = await UploadData(values);
               formikHelpers.resetForm();
+              setPreviewImage("");
+              if (res) {
+                onClose();
+                alert("Hero Added Please Refresh The Page");
+              }
             }}
             validationSchema={object({
               name: string()
