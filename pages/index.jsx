@@ -43,51 +43,68 @@ export default function Home({ heros }) {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "80vw",
-        marginLeft: "180px",
+        width: "100% !important",
+        height: "100vh",
+        backgroundImage:
+          "url(https://images.wallpaperscraft.com/image/single/fog_rain_light_night_92504_1920x1080.jpg)",
+        backgroundAttachment: "fixed",
       }}
     >
-      <Box sx={{ display: "flex", marginTop: "50px" }}>
-        <FormControl variant="standard" sx={{ width: "80%" }}>
-          <OutlinedInput
-            id="input-with-icon-adornment"
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "80vw",
+          marginLeft: "180px",
+          backgroundColor: "inherit",
+        }}
+      >
+        <Box sx={{ display: "flex", marginTop: "50px" }}>
+          <FormControl variant="con" sx={{ width: "80%" }}>
+            <OutlinedInput
+              sx={{ backgroundColor: "white" }}
+              id="input-with-icon-adornment"
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
 
-        <FormControl sx={{ width: "10%" }}>
-          <InputLabel>Sort</InputLabel>
-          <Select id="demo-simple-select">
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-        <Button
-          variant="outlined"
-          onClick={() => setShowAddModal(true)}
-          sx={{ width: "10%", color: "black", borderColor: "black" }}
-        >
-          Add
-        </Button>
-        <AddModal
-          show={showAddModal}
-          onClose={() => {
-            setShowAddModal(false);
-          }}
-        />
-      </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container columns={{ md: 16 }}>
-          {mapHeroList()}
-        </Grid>
-      </Box>
+          <FormControl sx={{ width: "10%" }}>
+            <InputLabel>Sort</InputLabel>
+            <Select id="demo-simple-select" sx={{ backgroundColor: "white" }}>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
+          <Button
+            variant="outlined"
+            onClick={() => setShowAddModal(true)}
+            sx={{
+              width: "10%",
+              color: "black",
+              borderColor: "black",
+              backgroundColor: "white",
+            }}
+          >
+            Add
+          </Button>
+          <AddModal
+            show={showAddModal}
+            onClose={() => {
+              setShowAddModal(false);
+            }}
+          />
+        </Box>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container columns={{ md: 16 }}>
+            {mapHeroList()}
+          </Grid>
+        </Box>
+      </div>
     </div>
   );
 }
