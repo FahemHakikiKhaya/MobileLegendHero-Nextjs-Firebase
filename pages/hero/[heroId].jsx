@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { Box, Button } from "@mui/material";
 import UpdateModal from "../../component/updateModal";
+import DeleteModal from "../../component/deleteModal";
 
 export const getStaticPaths = async () => {
   const entries = await getDocs(collection(database, "Hero"));
@@ -59,6 +60,7 @@ export const getStaticProps = async (context) => {
 
 function DetailPage({ heroDetail }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { roles, name, image, lanes, price } = heroDetail;
   return (
     <Box
@@ -96,9 +98,19 @@ function DetailPage({ heroDetail }) {
             onClose={() => setShowUpdateModal(false)}
             data={heroDetail}
           />
-          <Button sx={{ width: "50%" }} variant="contained" color="warning">
+          <Button
+            sx={{ width: "50%" }}
+            onClick={() => setShowDeleteModal(true)}
+            variant="contained"
+            color="warning"
+          >
             Delete
           </Button>
+          <DeleteModal
+            show={showDeleteModal}
+            onClose={() => setShowDeleteModal(false)}
+            hero={heroDetail}
+          />
         </Box>
         <h1 style={{ color: "white" }}>Hero Name : {name}</h1>
 

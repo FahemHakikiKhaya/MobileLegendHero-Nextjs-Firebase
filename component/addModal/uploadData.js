@@ -33,6 +33,7 @@ export const UploadData = async (data) => {
           image: downloadURL,
           lanesId: data.lanes,
           rolesId: data.roles,
+          isDelete: false,
         });
         const heroId = docRef.id;
         data.lanes.map(async (value) => {
