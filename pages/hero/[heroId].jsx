@@ -13,23 +13,8 @@ import { Box, Button } from "@mui/material";
 import UpdateModal from "../../component/updateModal";
 import DeleteModal from "../../component/deleteModal";
 
-export const getStaticPaths = async () => {
-  const entries = await getDocs(collection(database, "Hero"));
-  const paths = entries.docs.map((entry) => {
-    return {
-      params: {
-        heroId: entry.id.toString(),
-      },
-    };
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async (context) => {
-  const id = context.params.heroId;
+export const getServerSideProps = async ({ params }) => {
+  const id = params.heroId;
   const heroData = await getDoc(doc(database, "Hero", id));
 
   const rolesData = await getDocs(

@@ -16,7 +16,7 @@ import HeroCard from "../component/heroCard";
 import SearchIcon from "@mui/icons-material/Search";
 import AddModal from "../component/addModal";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const heroColRef = query(
     collection(database, "Hero"),
     where("isDelete", "==", false)

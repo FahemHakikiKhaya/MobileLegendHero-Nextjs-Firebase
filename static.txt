@@ -1,0 +1,44 @@
+// export const getStaticPaths = async () => {
+//   const entries = await getDocs(collection(database, "Hero"));
+//   const paths = entries.docs.map((entry) => {
+//     return {
+//       params: {
+//         heroId: entry.id.toString(),
+//       },
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
+// export const getStaticProps = async (context) => {
+//   const id = context.params.heroId;
+//   const heroData = await getDoc(doc(database, "Hero", id));
+
+//   const rolesData = await getDocs(
+//     query(collection(database, "Roles"), where("heroId", "array-contains", id))
+//   );
+//   const lanesData = await getDocs(
+//     query(collection(database, "Lanes"), where("heroId", "array-contains", id))
+//   );
+
+//   var roles = [];
+//   var lanes = [];
+
+//   const mapData = () => {
+//     rolesData.forEach((role) => {
+//       roles.push(role.data().name);
+//     });
+//     lanesData.forEach((lane) => {
+//       lanes.push(lane.data().name);
+//     });
+//   };
+//   mapData();
+//   const HeroDetailData = { ...heroData.data(), roles, lanes, heroId: id };
+
+//   return {
+//     props: { heroDetail: HeroDetailData },
+//   };
+// };
