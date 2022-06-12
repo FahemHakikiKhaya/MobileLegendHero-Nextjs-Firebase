@@ -12,7 +12,7 @@ export default function HeroCard({ data }) {
           width="300px"
           height="300px"
           src={data.image}
-          alt="sq-sample17"
+          alt="heroCard"
         />
         <figcaption>
           <h1>{data.name}</h1>

@@ -73,6 +73,7 @@ function DetailPage({ heroDetail }) {
           height="600px"
           style={{ borderRadius: "50%" }}
           src={image}
+          alt="heroDetail"
         />
       </Box>
 

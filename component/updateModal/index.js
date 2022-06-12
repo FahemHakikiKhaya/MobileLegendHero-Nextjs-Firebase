@@ -277,6 +277,7 @@ export default function UpdateModal({ show, onClose, data }) {
                     {previewImage ? (
                       <Image
                         loader={() => previewImage}
+                        alt="updateModal"
                         unoptimized={true}
                         height="100%"
                         src={previewImage}
