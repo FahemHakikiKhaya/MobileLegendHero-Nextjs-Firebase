@@ -10,6 +10,8 @@ import {
   FormControl,
   FormHelperText,
 } from "@mui/material";
+import Image from "next/image";
+
 import { Form, Field, Formik } from "formik";
 import { array, number, object, string } from "yup";
 import { UpdateData } from "./updateData";
@@ -274,7 +276,11 @@ export default function UpdateModal({ show, onClose, data }) {
                     }}
                   >
                     {previewImage ? (
-                      <img style={{ height: "100%" }} src={previewImage} />
+                      <Image
+                        loader={() => previewImage}
+                        height="100%"
+                        src={previewImage}
+                      />
                     ) : null}
                   </Box>
 

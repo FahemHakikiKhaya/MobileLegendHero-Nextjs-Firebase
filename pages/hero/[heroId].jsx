@@ -9,6 +9,7 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
+import Image from "next/image";
 import { Box, Button } from "@mui/material";
 import UpdateModal from "../../component/updateModal";
 import DeleteModal from "../../component/deleteModal";
@@ -65,8 +66,11 @@ function DetailPage({ heroDetail }) {
       }}
     >
       <Box>
-        <img
-          style={{ borderRadius: "50%", width: "600px", height: "600px" }}
+        <Image
+          loader={() => image}
+          width="600px"
+          height="600px"
+          style={{ borderRadius: "50%" }}
           src={image}
         />
       </Box>

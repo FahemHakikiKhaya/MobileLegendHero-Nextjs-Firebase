@@ -15,6 +15,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import HeroCard from "../component/heroCard";
 import SearchIcon from "@mui/icons-material/Search";
 import AddModal from "../component/addModal";
+import Image from "next/image";
 
 export const getServerSideProps = async () => {
   const heroColRef = query(

@@ -13,6 +13,7 @@ import {
 import { Form, Field, Formik } from "formik";
 import { array, number, object, string } from "yup";
 import { UploadData } from "./uploadData";
+import Image from "next/image";
 export default function AddModal({ show, onClose }) {
   const [previewImage, setPreviewImage] = useState("");
 
@@ -274,7 +275,12 @@ export default function AddModal({ show, onClose }) {
                     }}
                   >
                     {previewImage ? (
-                      <img style={{ height: "100%" }} src={previewImage} />
+                      <Image
+                        loader={() => previewImage}
+                        height="100%"
+                        src={previewImage}
+                        alt="herocard"
+                      />
                     ) : null}
                   </Box>
 
