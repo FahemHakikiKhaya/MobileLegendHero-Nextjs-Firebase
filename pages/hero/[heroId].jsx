@@ -121,18 +121,18 @@ function DetailPage({ heroDetail }) {
           Roles :
           {roles.map((role, index) => {
             if (index == roles.length - 1) {
-              return <span> {role} </span>;
+              return <span key={index}> {role} </span>;
             }
-            return <span> {role} , </span>;
+            return <span key={index}> {role} , </span>;
           })}
         </h2>
         <h2 style={{ color: "white" }}>
           Lanes :
           {lanes.map((lane, index) => {
             if (index == lanes.length - 1) {
-              return <span> {lane} </span>;
+              return <span key={index}> {lane} </span>;
             }
-            return <span> {lane} , </span>;
+            return <span key={index}> {lane} , </span>;
           })}
         </h2>
       </Box>
