@@ -5,13 +5,14 @@ export default function HeroCard({ data }) {
   const link = `/hero/${data.id}`;
   return (
     <Link href={link} key={data.id}>
-      <figure className="">
+      <figure className="card">
         <Image
           loader={() => data.image}
+          unoptimized={true}
           width="300px"
           height="300px"
           src={data.image}
-          alt="heroCard"
+          alt="sq-sample17"
         />
         <figcaption>
           <h1>{data.name}</h1>

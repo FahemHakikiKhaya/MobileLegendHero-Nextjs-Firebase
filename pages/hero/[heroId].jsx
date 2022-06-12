@@ -68,6 +68,7 @@ function DetailPage({ heroDetail }) {
       <Box>
         <Image
           loader={() => image}
+          unoptimized={true}
           width="600px"
           height="600px"
           style={{ borderRadius: "50%" }}
