@@ -68,10 +68,6 @@ export default function Home({ heros }) {
       switch (sortMethod) {
         case "a-z":
           resultFilter.sort((a, b) => {
-            // a : Kaos
-            // b : Celana
-            // b --> a
-
             if (a.name < b.name) {
               return -1;
             } else if (a.name > b.name) {
@@ -107,10 +103,6 @@ export default function Home({ heros }) {
     switch (sortMethod) {
       case "a-z":
         data.sort((a, b) => {
-          // a : Kaos
-          // b : Celana
-          // b --> a
-
           if (a.name < b.name) {
             return -1;
           } else if (a.name > b.name) {
@@ -142,7 +134,7 @@ export default function Home({ heros }) {
     <div
       style={{
         width: "100% !important",
-        // backgroundSize: "100%",
+
         backgroundImage: "url(https://i.imgur.com/oMDWenT.jpg)",
         backgroundAttachment: "fixed",
       }}
@@ -175,7 +167,6 @@ export default function Home({ heros }) {
           <FormControl sx={{ width: "10%" }}>
             <InputLabel>Sort</InputLabel>
             <Select
-              id="demo-simple-select"
               sx={{ backgroundColor: "white" }}
               onChange={handleSortChange}
             >
