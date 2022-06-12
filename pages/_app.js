@@ -1,7 +1,13 @@
 import "../component/heroCard/heroCard.css";
+import ButtonAppBar from "../component/navbar";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <div>
+      <ButtonAppBar />
+      <Component {...pageProps} />;
+    </div>
+  );
 }
 
 export default MyApp;

@@ -46,7 +46,13 @@ export const getServerSideProps = async ({ params }) => {
 function DetailPage({ heroDetail }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isLogedIn, setIsLogedIn] = useState(false);
   const { roles, name, image, lanes, price } = heroDetail;
+  useEffect(() => {
+    if (sessionStorage.getItem("Token")) {
+      setIsLogedIn(true);
+    }
+  }, []);
   return (
     <Box
       sx={{
@@ -54,9 +60,8 @@ function DetailPage({ heroDetail }) {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-
-        backgroundImage:
-          "url(https://images.wallpaperscraft.com/image/single/fog_mountains_silhouette_267045_1920x1080.jpg)",
+        backgroundSize: "100%",
+        backgroundImage: "url(https://wallpaperaccess.com/full/2467308.jpg)",
       }}
     >
       <Box>
@@ -68,29 +73,34 @@ function DetailPage({ heroDetail }) {
 
       <Box style={{ textAlign: "center" }}>
         <Box sx={{ marginTop: "20px" }}>
-          <Button
-            sx={{ width: "50%" }}
-            variant="contained"
-            color="success"
-            onClick={() => {
-              setShowUpdateModal(true);
-            }}
-          >
-            Update
-          </Button>
+          {isLogedIn ? (
+            <Button
+              sx={{ width: "50%" }}
+              variant="contained"
+              color="success"
+              onClick={() => {
+                setShowUpdateModal(true);
+              }}
+            >
+              Update
+            </Button>
+          ) : null}
           <UpdateModal
             show={showUpdateModal}
             onClose={() => setShowUpdateModal(false)}
             data={heroDetail}
           />
-          <Button
-            sx={{ width: "50%" }}
-            onClick={() => setShowDeleteModal(true)}
-            variant="contained"
-            color="warning"
-          >
-            Delete
-          </Button>
+
+          {isLogedIn ? (
+            <Button
+              sx={{ width: "50%" }}
+              onClick={() => setShowDeleteModal(true)}
+              variant="contained"
+              color="warning"
+            >
+              Delete
+            </Button>
+          ) : null}
           <DeleteModal
             show={showDeleteModal}
             onClose={() => setShowDeleteModal(false)}

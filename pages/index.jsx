@@ -9,7 +9,7 @@ import {
   MenuItem,
   Button,
 } from "@mui/material/";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { app, database } from "../config/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import HeroCard from "../component/heroCard";
@@ -37,6 +37,13 @@ export default function Home({ heros }) {
   const [sortedHeros, setSortedHeros] = useState(heros);
   const [keyword, setKeyword] = useState("");
   const [sortMethod, setSortMethod] = useState("");
+  const [isLogedIn, setIsLogedIn] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("Token")) {
+      setIsLogedIn(true);
+    }
+  }, []);
 
   const mapHeroList = () => {
     return sortedHeros.map((data, index) => {
@@ -135,9 +142,8 @@ export default function Home({ heros }) {
     <div
       style={{
         width: "100% !important",
-
-        backgroundImage:
-          "url(https://images.wallpaperscraft.com/image/single/fog_rain_light_night_92504_1920x1080.jpg)",
+        // backgroundSize: "100%",
+        backgroundImage: "url(https://i.imgur.com/oMDWenT.jpg)",
         backgroundAttachment: "fixed",
       }}
     >
@@ -178,18 +184,20 @@ export default function Home({ heros }) {
               <MenuItem value="z-a">Z-A</MenuItem>
             </Select>
           </FormControl>
-          <Button
-            variant="outlined"
-            onClick={() => setShowAddModal(true)}
-            sx={{
-              width: "10%",
-              color: "black",
-              borderColor: "black",
-              backgroundColor: "white",
-            }}
-          >
-            Add
-          </Button>
+          {isLogedIn ? (
+            <Button
+              variant="outlined"
+              onClick={() => setShowAddModal(true)}
+              sx={{
+                width: "10%",
+                color: "black",
+                borderColor: "black",
+                backgroundColor: "white",
+              }}
+            >
+              Add
+            </Button>
+          ) : null}
           <AddModal
             show={showAddModal}
             onClose={() => {
