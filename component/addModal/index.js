@@ -276,7 +276,12 @@ export default function AddModal({ show, onClose }) {
                     }}
                   >
                     {previewImage ? (
-                      <Image height="100%" src={previewImage} alt="addModal" />
+                      <Image
+                        height="200px"
+                        width="200px"
+                        src={previewImage}
+                        alt="addModal"
+                      />
                     ) : null}
                   </Box>
 

@@ -279,7 +279,8 @@ export default function UpdateModal({ show, onClose, data }) {
                         loader={() => previewImage}
                         alt="updateModal"
                         unoptimized={true}
-                        height="100%"
+                        height="200px"
+                        width="200px"
                         src={previewImage}
                       />
                     ) : null}
