@@ -4,12 +4,12 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD_SFLp6Awl6y6G8vWcIsUyGoVVHaDKwZk",
-  authDomain: "mobile-legends-d77ed.firebaseapp.com",
-  projectId: "mobile-legends-d77ed",
-  storageBucket: "mobile-legends-d77ed.appspot.com",
-  messagingSenderId: "553450372187",
-  appId: "1:553450372187:web:d6accf4ab08fa0d135d37e",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);

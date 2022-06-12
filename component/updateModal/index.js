@@ -67,7 +67,7 @@ export default function UpdateModal({ show, onClose, data }) {
 
               if (res) {
                 onClose();
-                alert("Hero Added Please Refresh The Page");
+                alert("Hero Updated Please Refresh The Page");
               }
             }}
             validationSchema={object({
