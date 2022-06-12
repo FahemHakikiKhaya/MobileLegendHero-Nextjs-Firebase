@@ -24,7 +24,7 @@ export const UpdateData = async (value, rawData) => {
   const oldRoles = rolesId;
   const oldLanes = lanesId;
 
-  const { deletedRoles, deletedLanes, addedRoles, addedLanes } = Compare(
+  const { deletedLanes, deletedRoles, addedLanes, addedRoles } = Compare(
     newRoles,
     newLanes,
     oldRoles,
@@ -68,6 +68,7 @@ export const UpdateData = async (value, rawData) => {
             lanesId: lanes,
             rolesId: roles,
           });
+
           if (addedLanes.length) {
             await addDataToArrayFireStore(addedLanes, "Lanes");
           }
@@ -101,7 +102,7 @@ export const UpdateData = async (value, rawData) => {
       await deleteDataOnArrayFireStore(deletedLanes, "Lanes");
     }
     if (deletedRoles.length) {
-      await deleteDataOnArrayFireStore(deletedLanes, "Lanes");
+      await deleteDataOnArrayFireStore(deletedRoles, "Roles");
     }
   }
   return true;
