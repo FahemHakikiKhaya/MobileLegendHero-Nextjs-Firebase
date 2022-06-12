@@ -78,7 +78,7 @@ export const UpdateData = async (value, rawData) => {
             await deleteDataOnArrayFireStore(deletedLanes, "Lanes");
           }
           if (deletedRoles.length) {
-            await deleteDataOnArrayFireStore(deletedLanes, "Lanes");
+            await deleteDataOnArrayFireStore(deletedRoles, "Roles");
           }
         });
       }
