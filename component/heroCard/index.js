@@ -5,7 +5,7 @@ export default function HeroCard({ data }) {
   const link = `/hero/${data.id}`;
   return (
     <Link href={link} key={data.id}>
-      <figure className="card">
+      <figure className="">
         <Image
           loader={() => data.image}
           width="300px"
